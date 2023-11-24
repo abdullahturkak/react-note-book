@@ -1,32 +1,27 @@
 import './App.css';
 import { useState } from 'react';
-import './List.js';
 
-let nextId = 0;
 
-function App() {
+export default function App() {
+  const [name, setName] = useState('');
+  const [myArray, setMyArray] = useState([]);
+  const handleAdd = () => {
+    setMyArray([...myArray, name]);
+
+  };
   return (
     <div className="App">
-      <div className="Form">
-        <h1/>Name <input />
-      </div>
-
-
-
-      <div className="Form">
-        <h1/>Notes <input type="text" />
-      </div>
-
-
-
-
-      <div className="Button">
-        <p>
-        <button>Send Notes</button>
-        </p>
-      </div>
+      <input
+        placeholder="Lütfen Not Giriniz"
+        onChange={(e) => setName(e.target.value)}
+      />
+      <p></p>
+      <button onClick={handleAdd}>add</button>
+      <p></p>
+      <button onClick={() => console.log(myArray)}>test</button>
+      {myArray.map((n) => {
+        return <h2>{n}</h2>;
+      })}
     </div>
   );
 }
-
-export default App;
